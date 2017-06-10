@@ -1,9 +1,3 @@
-[submodule "O.Game"]
-	path = O.Game
-	url = https://github.com/digovc/O.Game.git
-[submodule "Unity/O.Game"]
-	path = Unity/O.Game
-	url = https://github.com/digovc/O.Game.git
 [submodule "Unity/Assets/Script/O.Game"]
 	path = Unity/Assets/Script/O.Game
 	url = https://github.com/digovc/O.Game.git

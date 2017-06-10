@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 28df7f47bf058f948893146350afb235
+timeCreated: 1497106309
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ante.braco.l
+    100002: ante.braco.r
+    100004: braco
+    100006: braco.l
+    100008: braco.r
+    100010: cabeca
+    100012: cabeca 1
+    100014: cabeca_end
+    100016: //RootNode
+    100018: corpo
+    100020: corpo 1
+    100022: deco.l
+    100024: deco.l_end
+    100026: deco.r
+    100028: deco.r_end
+    100030: dedao.2.l
+    100032: dedao.2.l_end
+    100034: dedao.2.r
+    100036: dedao.2.r_end
+    100038: dedao.l
+    100040: dedao.r
+    100042: esqueleto
+    100044: ik.braco.pos.l
+    100046: ik.braco.pos.l_end
+    100048: ik.braco.pos.r
+    100050: ik.braco.pos.r_end
+    100052: ik.braco.rot.l
+    100054: ik.braco.rot.l_end
+    100056: ik.braco.rot.r
+    100058: ik.braco.rot.r_end
+    100060: mao.l
+    100062: mao.r
+    100064: ombro.l
+    100066: ombro.r
+    100068: porta.inferior
+    100070: porta.superior
+    400000: ante.braco.l
+    400002: ante.braco.r
+    400004: braco
+    400006: braco.l
+    400008: braco.r
+    400010: cabeca
+    400012: cabeca 1
+    400014: cabeca_end
+    400016: //RootNode
+    400018: corpo
+    400020: corpo 1
+    400022: deco.l
+    400024: deco.l_end
+    400026: deco.r
+    400028: deco.r_end
+    400030: dedao.2.l
+    400032: dedao.2.l_end
+    400034: dedao.2.r
+    400036: dedao.2.r_end
+    400038: dedao.l
+    400040: dedao.r
+    400042: esqueleto
+    400044: ik.braco.pos.l
+    400046: ik.braco.pos.l_end
+    400048: ik.braco.pos.r
+    400050: ik.braco.pos.r_end
+    400052: ik.braco.rot.l
+    400054: ik.braco.rot.l_end
+    400056: ik.braco.rot.r
+    400058: ik.braco.rot.r_end
+    400060: mao.l
+    400062: mao.r
+    400064: ombro.l
+    400066: ombro.r
+    400068: porta.inferior
+    400070: porta.superior
+    4300000: cabeca
+    4300002: braco
+    4300004: corpo
+    4300006: porta.inferior
+    4300008: porta.superior
+    7400000: t
+    7400002: esqueleto|die
+    7400004: esqueleto|t
+    7400006: esqueleto|walk
+    9500000: //RootNode
+    13700000: braco
+    13700002: cabeca
+    13700004: corpo
+    13700006: porta.inferior
+    13700008: porta.superior
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
