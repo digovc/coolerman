@@ -82,6 +82,7 @@
     <Compile Include="Assets\Script\Coolerman.cs" />
     <Compile Include="Assets\Script\O.Game\AppGameBase.cs" />
     <Compile Include="Assets\Script\O.Game\Utils.cs" />
+    <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\UiScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

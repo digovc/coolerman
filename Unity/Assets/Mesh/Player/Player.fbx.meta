@@ -160,7 +160,295 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: esqueleto|idle
+      takeName: esqueleto|idle
+      firstFrame: 0
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: braco
+        weight: 1
+      - path: cabeca
+        weight: 1
+      - path: corpo
+        weight: 1
+      - path: esqueleto
+        weight: 1
+      - path: esqueleto/ik
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.l
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.l/ik.mao.rot.l_end
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.r
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.r/ik.mao.rot.r_end
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.l
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.l/ik.pe.rot.l_end
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.r
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.r/ik.pe.rot.r_end
+        weight: 1
+      - path: esqueleto/ik/torso
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l/pe.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l/pe.l/pe.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r/pe.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r/pe.r/pe.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l/dedao.1.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l/dedao.1.l/dedao.1.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l/dedo.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l/dedo.l/dedo.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r/dedao.1.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r/dedao.1.r/dedao.1.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r/dedo.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r/dedo.r/dedo.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco/cabeca 1
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco/cabeca 1/cabeca_end
+        weight: 1
+      - path: esqueleto/ik.mao.pos.l
+        weight: 1
+      - path: esqueleto/ik.mao.pos.l/ik.mao.pos.l_end
+        weight: 1
+      - path: esqueleto/ik.mao.pos.r
+        weight: 1
+      - path: esqueleto/ik.mao.pos.r/ik.mao.pos.r_end
+        weight: 1
+      - path: esqueleto/ik.pe.pos.l
+        weight: 1
+      - path: esqueleto/ik.pe.pos.l/ik.pe.pos.l_end
+        weight: 1
+      - path: esqueleto/ik.pe.pos.r
+        weight: 1
+      - path: esqueleto/ik.pe.pos.r/ik.pe.pos.r_end
+        weight: 1
+      - path: mao
+        weight: 1
+      - path: oculos
+        weight: 1
+      - path: perna
+        weight: 1
+      - path: sapato
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: esqueleto|t
+      takeName: esqueleto|t
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: braco
+        weight: 1
+      - path: cabeca
+        weight: 1
+      - path: corpo
+        weight: 1
+      - path: esqueleto
+        weight: 1
+      - path: esqueleto/ik
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.l
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.l/ik.mao.rot.l_end
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.r
+        weight: 1
+      - path: esqueleto/ik/ik.mao.rot.r/ik.mao.rot.r_end
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.l
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.l/ik.pe.rot.l_end
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.r
+        weight: 1
+      - path: esqueleto/ik/ik.pe.rot.r/ik.pe.rot.r_end
+        weight: 1
+      - path: esqueleto/ik/torso
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l/pe.l
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.l/coxa.l/perna.l/pe.l/pe.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r/pe.r
+        weight: 1
+      - path: esqueleto/ik/torso/cadeira.r/coxa.r/perna.r/pe.r/pe.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l/dedao.1.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/dedao.l/dedao.1.l/dedao.1.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l/dedo.l
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.l/braco.l/ante.braco.l/mao.l/dedo.l/dedo.l_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r/dedao.1.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/dedao.r/dedao.1.r/dedao.1.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r/dedo.r
+        weight: 1
+      - path: esqueleto/ik/torso/ombro.r/braco.r/ante.braco.r/mao.r/dedo.r/dedo.r_end
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco/cabeca 1
+        weight: 1
+      - path: esqueleto/ik/torso/pescoco/cabeca 1/cabeca_end
+        weight: 1
+      - path: esqueleto/ik.mao.pos.l
+        weight: 1
+      - path: esqueleto/ik.mao.pos.l/ik.mao.pos.l_end
+        weight: 1
+      - path: esqueleto/ik.mao.pos.r
+        weight: 1
+      - path: esqueleto/ik.mao.pos.r/ik.mao.pos.r_end
+        weight: 1
+      - path: esqueleto/ik.pe.pos.l
+        weight: 1
+      - path: esqueleto/ik.pe.pos.l/ik.pe.pos.l_end
+        weight: 1
+      - path: esqueleto/ik.pe.pos.r
+        weight: 1
+      - path: esqueleto/ik.pe.pos.r/ik.pe.pos.r_end
+        weight: 1
+      - path: mao
+        weight: 1
+      - path: oculos
+        weight: 1
+      - path: perna
+        weight: 1
+      - path: sapato
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

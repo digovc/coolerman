@@ -1,7 +1,6 @@
-﻿using Boo.Lang;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AppCoolerman : MonoBehaviour
 {
@@ -15,6 +14,9 @@ public class AppCoolerman : MonoBehaviour
 
     #region Atributos
 
+    public AudioClip objAudioGameOver;
+    public AudioClip objAudioGamePlay;
+
     private static AppCoolerman _i;
     private bool _booMorreu;
     private float _fltCoolermanVelocidade = 5;
@@ -22,6 +24,7 @@ public class AppCoolerman : MonoBehaviour
     private int _intQuantidadeLimite = 5;
     private int _intScore;
     private List<Coolerman> _lstObjCoolerman;
+    private AudioSource _objAudioSource;
     private GameObject _objCoolerMan;
 
     public static AppCoolerman i
@@ -117,6 +120,21 @@ public class AppCoolerman : MonoBehaviour
         }
     }
 
+    private AudioSource objAudioSource
+    {
+        get
+        {
+            if (_objAudioSource != null)
+            {
+                return _objAudioSource;
+            }
+
+            _objAudioSource = this.GetComponent<AudioSource>();
+
+            return _objAudioSource;
+        }
+    }
+
     private GameObject objCoolerMan
     {
         get
@@ -153,7 +171,7 @@ public class AppCoolerman : MonoBehaviour
 
         if (this.intQuantidadeLimite < INT_QUANTIDADE_MAXIMA)
         {
-            this.intQuantidadeLimite = (int)(this.intScore * .075 + 5);
+            this.intQuantidadeLimite = (int)(this.intScore * .025 + 5);
         }
 
         if (this.fltTempoNascimento < FLT_TEMPO_NASCIMENTO_MINIMO)
@@ -163,27 +181,31 @@ public class AppCoolerman : MonoBehaviour
 
         if (this.fltCoolermanVelocidade < FLT_VELOCIDADE_MAXIMA)
         {
-            this.fltCoolermanVelocidade += (this.fltCoolermanVelocidade * .0125f);
+            this.fltCoolermanVelocidade += (this.fltCoolermanVelocidade * .01f);
         }
     }
 
-    internal void morrer(Coolerman objCoolerman)
+    internal void morrer(Coolerman objCoolermanAssassino)
     {
         this.booMorreu = true;
 
-        this.StopAllCoroutines();
-
-        foreach (var objCoolerman2 in this.lstObjCoolerman)
+        if (this.objAudioSource.isPlaying)
         {
-            if (objCoolerman2.Equals(objCoolerman))
-            {
-                continue;
-            }
-
-            objCoolerman2.sumir();
+            this.objAudioSource.Stop();
         }
 
-        SceneManager.LoadScene(0);
+        Player.i.morrer();
+
+        UiScript.i.gameOver();
+
+        this.objAudioSource.clip = this.objAudioGameOver;
+        this.objAudioSource.loop = false;
+
+        this.objAudioSource.Play();
+
+        this.StopAllCoroutines();
+
+        this.lstObjCoolerman.ForEach(objCoolerman => objCoolerman.destruir());
     }
 
     private void gerarCoolerman()

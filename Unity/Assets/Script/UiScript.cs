@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiScript : MonoBehaviour
@@ -9,37 +10,24 @@ public class UiScript : MonoBehaviour
 
     #region Atributos
 
-    private Text _txtScore;
+    public Button btnReiniciar;
+    public Button btnSair;
+    public GameObject pnlGameOver;
+    public GameObject pnlGamePlay;
+    public Text txtGameOverScore;
+    public Text txtScore;
+    private static UiScript _i;
 
-    private Text txtScore
+    public static UiScript i
     {
         get
         {
-            if (_txtScore != null)
-            {
-                return _txtScore;
-            }
-
-            _txtScore = this.GetComponentInChildren<Text>();
-
-            return _txtScore;
+            return _i;
         }
-    }
 
-    private RawImage _imgPlayPause;
-
-    private RawImage imgPlayPause
-    {
-        get
+        private set
         {
-            if (_imgPlayPause != null)
-            {
-                return _imgPlayPause;
-            }
-
-            _imgPlayPause = this.GetComponentInChildren<RawImage>();
-
-            return _imgPlayPause;
+            _i = value;
         }
     }
 
@@ -47,9 +35,39 @@ public class UiScript : MonoBehaviour
 
     #region Construtores
 
+    public UiScript()
+    {
+        _i = this;
+    }
+
     #endregion Construtores
 
     #region Métodos
+
+    public void btnReiniciar_onClick()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void btnSair_onClick()
+    {
+        Application.Quit();
+    }
+
+    internal void gameOver()
+    {
+        this.txtGameOverScore.text = this.txtScore.text;
+
+        this.pnlGamePlay.SetActive(false);
+        this.pnlGameOver.SetActive(true);
+
+        this.btnReiniciar.onClick.AddListener(delegate
+        {
+            this.btnReiniciar_onClick();
+        });
+
+        this.btnSair.onClick.AddListener(this.btnSair_onClick);
+    }
 
     private void processarUpdate()
     {
@@ -59,9 +77,9 @@ public class UiScript : MonoBehaviour
     #endregion Métodos
 
     #region Eventos
+
     private void OnMouseEnter()
     {
-        
     }
 
     private void Update()

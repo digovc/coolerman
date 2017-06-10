@@ -7,13 +7,33 @@ public class Coolerman : MonoBehaviour
 {
     #region Constantes
 
+    private const string STR_CLIP_DIE = "die";
+    private const string STR_CLIP_WALK = "walk";
+
     #endregion Constantes
 
     #region Atributos
 
+    private bool _booMorreu;
     private float _fltAlpha;
     private float _fltVelocidade;
     private List<Renderer> _lstObjRenderer;
+    private Animator _objAnimator;
+
+    private AudioSource _objAudioSource;
+
+    private bool booMorreu
+    {
+        get
+        {
+            return _booMorreu;
+        }
+
+        set
+        {
+            _booMorreu = value;
+        }
+    }
 
     private float fltAlpha
     {
@@ -56,6 +76,36 @@ public class Coolerman : MonoBehaviour
         }
     }
 
+    private Animator objAnimator
+    {
+        get
+        {
+            if (_objAnimator != null)
+            {
+                return _objAnimator;
+            }
+
+            _objAnimator = this.GetComponentInChildren<Animator>();
+
+            return _objAnimator;
+        }
+    }
+
+    private AudioSource objAudioSource
+    {
+        get
+        {
+            if (_objAudioSource != null)
+            {
+                return _objAudioSource;
+            }
+
+            _objAudioSource = this.GetComponentInChildren<AudioSource>();
+
+            return _objAudioSource;
+        }
+    }
+
     #endregion Atributos
 
     #region Construtores
@@ -64,50 +114,60 @@ public class Coolerman : MonoBehaviour
 
     #region Métodos
 
-    internal void sumir()
-    {
-        this.StopAllCoroutines();
-
-        this.StartCoroutine(this.fadeOut());
-    }
-
-    private void destruir()
+    internal void destruir()
     {
         Destroy(this.gameObject);
     }
 
     private IEnumerator fadeIn()
     {
-        var cor = this.lstObjRenderer[0].material.color;
-
-        for (float f = 0f; f < 2.5f; f += Time.deltaTime)
+        for (float t = 0f; t < 2.5f; t += Time.deltaTime)
         {
-            cor.a = (f / 2.5f);
-
-            this.lstObjRenderer.ForEach(objRender => objRender.material.color = cor);
+            this.lstObjRenderer.ForEach(objRender => this.fadeIn(objRender, t));
 
             yield return null;
         }
 
+        this.lstObjRenderer.ForEach(objRender => this.fadeInFinalizar(objRender));
+    }
+
+    private void fadeIn(Renderer objRender, float t)
+    {
+        var cor = objRender.material.color;
+
+        cor.a = (t * 2.5f * 1);
+
+        objRender.material.color = cor;
+    }
+
+    private void fadeInFinalizar(Renderer objRender)
+    {
+        var cor = objRender.material.color;
+
         cor.a = 1;
 
-        this.lstObjRenderer.ForEach(objRender => objRender.material.color = cor);
+        objRender.material.color = cor;
     }
 
     private IEnumerator fadeOut()
     {
-        var cor = this.lstObjRenderer[0].material.color;
-
-        for (float f = 0f; f < .35f; f += Time.deltaTime)
+        for (float t = 0f; t < 1.5f; t += Time.deltaTime)
         {
-            cor.a = (1 - f / .35f);
-
-            this.lstObjRenderer.ForEach(objRender => objRender.material.color = cor);
+            this.lstObjRenderer.ForEach(objRender => this.fadeOut(objRender, t));
 
             yield return null;
         }
 
         this.destruir();
+    }
+
+    private void fadeOut(Renderer objRender, float t)
+    {
+        var cor = objRender.material.color;
+
+        cor.a = (1 - t / 1.5f);
+
+        objRender.material.color = cor;
     }
 
     private void iniciar()
@@ -125,11 +185,16 @@ public class Coolerman : MonoBehaviour
 
     private void iniciarAlpha()
     {
-        var cor = this.lstObjRenderer[0].material.color;
+        this.lstObjRenderer.ForEach(objRender => this.iniciarAlpha(objRender));
+    }
+
+    private void iniciarAlpha(Renderer objRender)
+    {
+        var cor = objRender.material.color;
 
         cor.a = 0;
 
-        this.lstObjRenderer.ForEach(objRender => objRender.material.color = cor);
+        objRender.material.color = cor;
     }
 
     private void iniciarPosicao()
@@ -146,13 +211,32 @@ public class Coolerman : MonoBehaviour
 
     private void morrer()
     {
+        if (this.booMorreu)
+        {
+            return;
+        }
+
+        this.booMorreu = true;
+        this.enabled = false;
+
         AppCoolerman.i.matar(this);
 
-        this.sumir();
+        this.StopAllCoroutines();
+
+        this.objAnimator.Play(Animator.StringToHash(STR_CLIP_DIE));
+
+        this.objAudioSource.Play();
+
+        this.StartCoroutine(this.fadeOut());
     }
 
     private void mover()
     {
+        if (this.booMorreu)
+        {
+            return;
+        }
+
         if (AppCoolerman.i.booMorreu)
         {
             return;
@@ -164,6 +248,8 @@ public class Coolerman : MonoBehaviour
         }
 
         this.transform.Translate(Vector3.forward * this.fltVelocidade * Time.deltaTime, Space.Self);
+
+        this.objAnimator.Play(Animator.StringToHash(STR_CLIP_WALK));
     }
 
     #endregion Métodos
