@@ -19,7 +19,6 @@ public class Coolerman : MonoBehaviour
     private float _fltVelocidade;
     private List<Renderer> _lstObjRenderer;
     private Animator _objAnimator;
-
     private AudioSource _objAudioSource;
 
     private bool booMorreu
