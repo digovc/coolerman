@@ -32,7 +32,28 @@ public class AppCoolerman : MonoBehaviour
         StartCoroutine(SpawnEnemyCoroutine());
     }
 
-    internal void Die()
+    internal void KillEnemy(Coolerman enemy)
+    {
+        score++;
+        RemoveEnemy(enemy);
+
+        if (currentQuantity < MAX_QUANTITY)
+        {
+            currentQuantity = (int)(score * .025 + 5);
+        }
+
+        if (currentSpawnTime < MIN_SPAWN_TIME)
+        {
+            currentSpawnTime -= (currentSpawnTime * .05f);
+        }
+
+        if (currentVelocity < MAX_VELOCITY)
+        {
+            currentVelocity += (currentVelocity * .01f);
+        }
+    }
+
+    internal void KillPlayer()
     {
         isPlayerDead = true;
 
@@ -52,27 +73,6 @@ public class AppCoolerman : MonoBehaviour
         StopAllCoroutines();
 
         enemies.ForEach(objCoolerman => objCoolerman.Destroy());
-    }
-
-    internal void Kill(Coolerman enemy)
-    {
-        score++;
-        RemoveEnemy(enemy);
-
-        if (currentQuantity < MAX_QUANTITY)
-        {
-            currentQuantity = (int)(score * .025 + 5);
-        }
-
-        if (currentSpawnTime < MIN_SPAWN_TIME)
-        {
-            currentSpawnTime -= (currentSpawnTime * .05f);
-        }
-
-        if (currentVelocity < MAX_VELOCITY)
-        {
-            currentVelocity += (currentVelocity * .01f);
-        }
     }
 
     private void RemoveEnemy(Coolerman enemy)

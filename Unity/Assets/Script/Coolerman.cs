@@ -22,7 +22,7 @@ public class Coolerman : MonoBehaviour
     public void OnTriggerEnter()
     {
         Debug.Log("Colidiu.");
-        app.Kill(this);
+        app.KillPlayer();
     }
 
     public void Start()
@@ -56,7 +56,7 @@ public class Coolerman : MonoBehaviour
         {
             dead = true;
             enabled = false;
-            app.Kill(this);
+            app.KillEnemy(this);
             StopAllCoroutines();
             animator.Play(Animator.StringToHash(DIE_CLIP));
             audioSource.Play();
