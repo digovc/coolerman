@@ -1,281 +1,159 @@
-﻿using Assets.Script.O.Game;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Coolerman : MonoBehaviour
 {
-    #region Constantes
+    public const string DIE_CLIP = "die";
+    public const string WALK_CLIP = "walk";
 
-    private const string STR_CLIP_DIE = "die";
-    private const string STR_CLIP_WALK = "walk";
+    private Animator animator;
+    private AppCoolerman app;
+    private AudioSource audioSource;
+    private bool dead;
+    private List<Renderer> renderers;
+    private float velocity;
 
-    #endregion Constantes
-
-    #region Atributos
-
-    private bool _booMorreu;
-    private float _fltAlpha;
-    private float _fltVelocidade;
-    private List<Renderer> _lstObjRenderer;
-    private Animator _objAnimator;
-    private AudioSource _objAudioSource;
-
-    private bool booMorreu
+    public void OnMouseDown()
     {
-        get
-        {
-            return _booMorreu;
-        }
-
-        set
-        {
-            _booMorreu = value;
-        }
+        Die();
     }
 
-    private float fltAlpha
+    public void OnTriggerEnter()
     {
-        get
-        {
-            return _fltAlpha;
-        }
-
-        set
-        {
-            _fltAlpha = value;
-        }
+        Debug.Log("Colidiu.");
+        app.Kill(this);
     }
 
-    private float fltVelocidade
+    public void Start()
     {
-        get
-        {
-            return _fltVelocidade;
-        }
+        app = FindObjectOfType<AppCoolerman>();
+        renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
+        animator = GetComponentInChildren<Animator>();
+        audioSource = GetComponentInChildren<AudioSource>();
 
-        set
-        {
-            _fltVelocidade = value;
-        }
+        app.enemies.Add(this);
+        velocity = app.currentVelocity;
+
+        StartAlpha();
+        StartPosition();
+        StartCoroutine(fadeIn());
     }
 
-    private List<Renderer> lstObjRenderer
+    public void Update()
     {
-        get
-        {
-            if (_lstObjRenderer != null)
-            {
-                return _lstObjRenderer;
-            }
-
-            _lstObjRenderer = new List<Renderer>(this.GetComponentsInChildren<Renderer>());
-
-            return _lstObjRenderer;
-        }
+        Move();
     }
 
-    private Animator objAnimator
+    internal void Destroy()
     {
-        get
-        {
-            if (_objAnimator != null)
-            {
-                return _objAnimator;
-            }
-
-            _objAnimator = this.GetComponentInChildren<Animator>();
-
-            return _objAnimator;
-        }
+        Destroy(gameObject);
     }
 
-    private AudioSource objAudioSource
+    private void Die()
     {
-        get
+        if (!dead)
         {
-            if (_objAudioSource != null)
-            {
-                return _objAudioSource;
-            }
-
-            _objAudioSource = this.GetComponentInChildren<AudioSource>();
-
-            return _objAudioSource;
+            dead = true;
+            enabled = false;
+            app.Kill(this);
+            StopAllCoroutines();
+            animator.Play(Animator.StringToHash(DIE_CLIP));
+            audioSource.Play();
+            StartCoroutine(FadeOut());
         }
-    }
-
-    #endregion Atributos
-
-    #region Construtores
-
-    #endregion Construtores
-
-    #region Métodos
-
-    internal void destruir()
-    {
-        Destroy(this.gameObject);
     }
 
     private IEnumerator fadeIn()
     {
         for (float t = 0f; t < 2.5f; t += Time.deltaTime)
         {
-            this.lstObjRenderer.ForEach(objRender => this.fadeIn(objRender, t));
-
+            renderers.ForEach(objRender => FadeIn(objRender, t));
             yield return null;
         }
 
-        this.lstObjRenderer.ForEach(objRender => this.fadeInFinalizar(objRender));
+        renderers.ForEach(x => FadeInFinish(x));
     }
 
-    private void fadeIn(Renderer objRender, float t)
+    private void FadeIn(Renderer renderer, float t)
     {
-        var cor = objRender.material.color;
-
-        cor.a = (t * 2.5f * 1);
-
-        objRender.material.color = cor;
+        var color = renderer.material.color;
+        color.a = t * 2.5f * 1;
+        renderer.material.color = color;
     }
 
-    private void fadeInFinalizar(Renderer objRender)
+    private void FadeInFinish(Renderer renderer)
     {
-        var cor = objRender.material.color;
-
-        cor.a = 1;
-
-        objRender.material.color = cor;
+        var color = renderer.material.color;
+        color.a = 1;
+        renderer.material.color = color;
     }
 
-    private IEnumerator fadeOut()
+    private IEnumerator FadeOut()
     {
         for (float t = 0f; t < 1.5f; t += Time.deltaTime)
         {
-            this.lstObjRenderer.ForEach(objRender => this.fadeOut(objRender, t));
-
+            renderers.ForEach(x => FadeOut(x, t));
             yield return null;
         }
 
-        this.destruir();
+        Destroy();
     }
 
-    private void fadeOut(Renderer objRender, float t)
+    private void FadeOut(Renderer renderer, float t)
     {
-        var cor = objRender.material.color;
-
-        cor.a = (1 - t / 1.5f);
-
-        objRender.material.color = cor;
+        var color = renderer.material.color;
+        color.a = 1 - t / 1.5f;
+        renderer.material.color = color;
     }
 
-    private void iniciar()
+    private void Move()
     {
-        AppCoolerman.i.lstObjCoolerman.Add(this);
-
-        this.fltVelocidade = AppCoolerman.i.fltCoolermanVelocidade;
-
-        this.iniciarAlpha();
-
-        this.iniciarPosicao();
-
-        this.StartCoroutine(this.fadeIn());
-    }
-
-    private void iniciarAlpha()
-    {
-        this.lstObjRenderer.ForEach(objRender => this.iniciarAlpha(objRender));
-    }
-
-    private void iniciarAlpha(Renderer objRender)
-    {
-        var cor = objRender.material.color;
-
-        cor.a = 0;
-
-        objRender.material.color = cor;
-    }
-
-    private void iniciarPosicao()
-    {
-        var vctCentro = Vector3.zero;
-
-        var vctPosicao = Utils.randomizarCircle(vctCentro, 0, 25);
-
-        var qtnRotacao = Quaternion.FromToRotation(Vector3.forward, vctCentro - vctPosicao);
-
-        this.transform.position = vctPosicao;
-        this.transform.rotation = qtnRotacao;
-    }
-
-    private void morrer()
-    {
-        if (this.booMorreu)
+        if (dead)
         {
             return;
         }
 
-        this.booMorreu = true;
-        this.enabled = false;
-
-        AppCoolerman.i.matar(this);
-
-        this.StopAllCoroutines();
-
-        this.objAnimator.Play(Animator.StringToHash(STR_CLIP_DIE));
-
-        this.objAudioSource.Play();
-
-        this.StartCoroutine(this.fadeOut());
-    }
-
-    private void mover()
-    {
-        if (this.booMorreu)
+        if (app.isPlayerDead)
         {
             return;
         }
 
-        if (AppCoolerman.i.booMorreu)
+        if (renderers[0].material.color.a < 1)
         {
             return;
         }
 
-        if (this.lstObjRenderer[0].material.color.a < 1)
-        {
-            return;
-        }
-
-        this.transform.Translate(Vector3.forward * this.fltVelocidade * Time.deltaTime, Space.Self);
-
-        this.objAnimator.Play(Animator.StringToHash(STR_CLIP_WALK));
+        transform.Translate(Vector3.forward * velocity * Time.deltaTime, Space.Self);
+        animator.Play(Animator.StringToHash(WALK_CLIP));
     }
 
-    #endregion Métodos
-
-    #region Eventos
-
-    public void OnTriggerEnter(Collider objCollider)
+    private Vector3 RandomPosition()
     {
-        Debug.Log("Colidiu.");
-
-        AppCoolerman.i.morrer(this);
+        var distance = 25f;
+        var angle = Random.Range(0, Mathf.PI * 2);
+        var pos2d = new Vector2(Mathf.Sin(angle) * distance, Mathf.Cos(angle) * distance);
+        return new Vector3(pos2d.x, 0, pos2d.y);
     }
 
-    private void OnMouseDown()
+    private void StartAlpha()
     {
-        this.morrer();
+        renderers.ForEach(x => StartAlpha(x));
     }
 
-    private void Start()
+    private void StartAlpha(Renderer renderer)
     {
-        this.iniciar();
+        var color = renderer.material.color;
+        color.a = 0;
+        renderer.material.color = color;
     }
 
-    private void Update()
+    private void StartPosition()
     {
-        this.mover();
+        var center = Vector3.zero;
+        var position = RandomPosition();
+        var rotation = Quaternion.FromToRotation(Vector3.forward, center - position);
+        transform.position = position;
+        transform.rotation = rotation;
     }
-
-    #endregion Eventos
 }
